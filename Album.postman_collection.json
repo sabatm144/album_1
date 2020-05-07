@@ -1,0 +1,189 @@
+{
+	"info": {
+		"_postman_id": "3de9847d-e107-4966-8b6a-c26dc98dad5e",
+		"name": "Album",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create album",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "localhost:9000/album?name=2020",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"album"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "2020"
+						}
+					]
+				},
+				"description": "Create album takes name as parameter"
+			},
+			"response": []
+		},
+		{
+			"name": "Upload Image",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "multipart/form-data",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "image",
+							"type": "file",
+							"src": "/Users/bharath/Desktop/test-image.png"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:9000/image?album=2020",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"image"
+					],
+					"query": [
+						{
+							"key": "album",
+							"value": "2020"
+						},
+						{
+							"key": "file",
+							"value": null,
+							"disabled": true
+						}
+					]
+				},
+				"description": "Uplaod file. \nContent type: multiform-data\nimage: 'image from directory'"
+			},
+			"response": []
+		},
+		{
+			"name": "Get Images of the album",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:9000/images?album=2020",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"images"
+					],
+					"query": [
+						{
+							"key": "album",
+							"value": "2020"
+						}
+					]
+				},
+				"description": "Get all images in an album.\nReturns the image names present in the album."
+			},
+			"response": []
+		},
+		{
+			"name": "Get Image",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:9000/image?album=2020&name=test-image.png",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"image"
+					],
+					"query": [
+						{
+							"key": "album",
+							"value": "2020"
+						},
+						{
+							"key": "name",
+							"value": "test-image.png"
+						}
+					]
+				},
+				"description": "Get image fromm an album"
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Image",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:9000/image?album=2020&name=test-image.png",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"image"
+					],
+					"query": [
+						{
+							"key": "album",
+							"value": "2020"
+						},
+						{
+							"key": "name",
+							"value": "test-image.png"
+						}
+					]
+				},
+				"description": "Delete an image from an album"
+			},
+			"response": []
+		},
+		{
+			"name": "Delete an album",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:9000/album?name=2020",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"album"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "2020"
+						}
+					]
+				},
+				"description": "Delete an album"
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

@@ -1,0 +1,128 @@
+host: localhost:9000
+basePath: /
+schemes:
+  - http
+  
+info:
+  description: Album application
+  title: Go album microservice
+  version: 1.0.0
+produces:
+- application/json
+swagger: "2.0"
+
+
+paths:
+# album api's
+  /album:
+    post:
+      summary: Create an album
+      parameters:
+          - name: name
+            in: query
+            type: string
+            required: true
+            description: Used to create album directory
+      responses:
+        '200':
+          description: Album created successfully
+        '400':
+          description: Error Invalid album name or album  already exists
+            
+  /album:
+      delete:
+        summary: Deletes an album directory
+        parameters:
+          - name: name
+            in: query
+            type: string
+            required: true
+            description: The name of the album directory
+        responses:
+          200:
+            description: Deleted the album
+          400:
+            description: Invalid album name
+
+# image api's
+  /image:
+    post:
+      summary: Adds a new image in album directory
+      consumes:
+        - multipart/form-data
+      parameters:
+          - name: album
+            in: query
+            type: string
+            required: true
+            description: The name of the album directory
+          - name: image
+            in: formData
+            type: file
+            required: true
+            description: The image file to be stored in the album directory
+      responses:
+        '200':
+          description: Album created successfully
+        '400':
+          description: Mandatory query params/Error processing image
+        '404':
+          description: Album directory not found
+
+  /image:
+      delete:
+        summary: Deletes an album directory
+        parameters:
+          - name: album
+            in: query
+            type: string
+            required: true
+            description: The name of the album directory
+          - name: name
+            in: query
+            type: string
+            required: true
+            description: The name of the image of the album directory
+        responses:
+          '400':
+            description: "Error Invalid query params"
+          '404':
+            description: Album/Image not found
+          '200':
+            description: "Deleted image successfully in album directory"
+
+  /image:
+      get:
+        summary: Gets an image in album directory
+        parameters:
+          - name: album
+            in: query
+            type: string
+            required: true
+            description: The name of the album directory
+          - name: name
+            in: query
+            type: string
+            required: true
+            description: The name of the image of the album directory
+        responses:
+          '400':
+            description: "Error Invalid query params/Unable to process image"
+          '404':
+            description: Album/Image not found
+
+  /images:
+      get:
+        summary: Gets images in album directory
+        parameters:
+          - name: album
+            in: query
+            type: string
+            required: true
+            description: The name of the album directory
+        responses:
+          '400':
+            description: "Error Invalid query params"
+          '404':
+            description: Album not found
+            
